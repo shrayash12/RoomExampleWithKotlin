@@ -8,17 +8,16 @@ import shradha.com.roomexamplewithkotlin.data.StudentRepository
 import shradha.com.roomexamplewithkotlin.data.Student
 
 class StudentViewModel(private val studentRepository: StudentRepository) : ViewModel() {
-    fun vmAddStudent(student: Student) {
+    suspend fun vmAddStudent(student: Student) {
         viewModelScope.launch {
             studentRepository.addStudentRepo(student)
         }
     }
 
-    fun vmGetStudent(): Flow<List<Student>> {
+    suspend fun vmGetStudent(): Flow<List<Student>> {
         viewModelScope.launch {
             studentRepository.getStudentListRepo()
         }
         return studentRepository.getStudentListRepo()
-
     }
 }

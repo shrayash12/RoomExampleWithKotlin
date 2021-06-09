@@ -1,14 +1,16 @@
 package shradha.com.roomexamplewithkotlin.data
 
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
 
 class StudentRepository(private val studentDao: StudentDao) {
-
-    fun addStudentRepo(student: Student) {
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+   suspend fun addStudentRepo(student: Student) {
         studentDao.insertStudent(student)
     }
 
-    fun getStudentListRepo(): Flow<List<Student>> {
+  suspend  fun getStudentListRepo(): Flow<List<Student>> {
         return studentDao.getAllStudents()
     }
 

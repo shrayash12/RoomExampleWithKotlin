@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface StudentDao {
     @Insert
-    fun insertStudent(student: Student)
+    suspend fun insertStudent(student: Student)
 
     @Query("SELECT * FROM StudentTable")
-    fun getAllStudents(): Flow<List<Student>>
+    suspend fun getAllStudents(): Flow<List<Student>>
 
     @Query("DELETE  from StudentTable")
-    fun delete()
+    suspend fun delete()
 }
